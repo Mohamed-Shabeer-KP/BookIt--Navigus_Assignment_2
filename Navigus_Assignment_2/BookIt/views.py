@@ -1,14 +1,42 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+from django.utils import timezone
+from django.contrib import messages
+from . import custom_auth
 
 def index(request):
     return render(request,'BookIt/index.html')
 
 def login(request):
-    return render(request,'BookIt/login.html')
+    if request.method == "POST" :
+        if request.POST.get("password") and request.POST.get("email"):
+            val_email = request.POST.get("email")            
+            val_password = request.POST.get("password")
+            user = custom_auth.authenticate(mail=val_email, password=val_password)
+            if user is not None:
+                messages.info(request, user)
+                return render(request,'BookIt/index.html')
+            else:
+                messages.info(request, 'Login credetials are invalid')
+                return render(request,'BookIt/login.html')
+    else :
+        return render(request,'BookIt/login.html')
 
 def register(request):
-    return render(request,'BookIt/registration.html')
+    if request.method == "POST" :
+        if request.POST.get("name") and request.POST.get("password") and request.POST.get("email"):
+            val_name = request.POST.get("name")
+            val_password = request.POST.get("password")
+            val_email = request.POST.get("email")
+            user = User.objects.create_user(val_name,val_email,val_password)
+            user.save()
+            messages.info(request, 'Hurray! You have been successfully Registered.')
+        return render(request,'BookIt/registration.html')
+    else :
+        return render(request,'BookIt/registration.html')
+
 
 def features(request):
     return render(request,'BookIt/features.html')
