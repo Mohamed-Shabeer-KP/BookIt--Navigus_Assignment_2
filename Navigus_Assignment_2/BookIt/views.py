@@ -8,7 +8,7 @@ def login(request):
     return render(request,'BookIt/login.html')
 
 def register(request):
-    return render(request,'BookIt/register.html')
+    return render(request,'BookIt/registration.html')
 
 def features(request):
     return render(request,'BookIt/features.html')
