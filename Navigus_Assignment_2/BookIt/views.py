@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -44,5 +44,14 @@ def register(request):
     else:
         return render(request,'BookIt/registration.html')
 
-def features(request):
-    return render(request,'BookIt/features.html')
+def createSlot(request):
+    return redirect('api-slot:slot-create')
+
+def viewSlot(request):
+    return redirect('api-slot:slot-select')
+
+def bookSlot(request):
+    return redirect('api-slot:slot-update')
+
+def removeSlot(request):
+    return redirect('api-slot:slot-remove')
