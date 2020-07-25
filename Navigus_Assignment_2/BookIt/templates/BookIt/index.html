@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 </head>
 
 <body>
@@ -22,19 +28,45 @@
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
+                    {% if not messages %}
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#" data-page="home">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active active" data-page="features" href="#">Features</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'login' %}">Login</a></li> 
+                    {% endif %}
+
+                    {% if messages %}
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#" data-page="home">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active active" data-page="features" href="#">Features</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'index' %}">Logout</a></li> 
+                    {% endif %}                   
                 </ul>
             </div>
         </div>
     </nav>
     <main class="page landing-page">
+
+    {% if messages %}
+        {% for message in messages %}
+        <script>
+            bootbox.alert({
+                title: "Notify",
+                message: "Successfully Logged In",
+            })
+        </script>
+        <section id="home" class="clean-block clean-hero page" style="background-image:url(&quot;{% static 'assets/img/info_calendar.png' %}&quot;);color:rgba(9, 162, 255, 0.85);">
+            <div class="text">
+                <h2>BookIt.</h2>
+                <h5>Scheduling made easy.</h5> <p>Hi {{ message }} you may now book an appoinment with you friends and colleagues also you may let them know when you are available.</p><a href="{% url 'register' %}" class="btn btn-outline-light btn-lg mr-1">Slot</a><a href="{% url 'register' %}" class="btn btn-outline-light btn-lg">Book Now</a></div>        
+        </section>
+        {% endfor %}
+    {% else %}        
         <section id="home" class="clean-block clean-hero page" style="background-image:url(&quot;{% static 'assets/img/info_calendar.png' %}&quot;);color:rgba(9, 162, 255, 0.85);">
             <div class="text">
                 <h2>BookIt.</h2>
                 <h5>Scheduling made easy.</h5> <p>we will help you to book and manage your appointments online.</p><a href="{% url 'register' %}" class="btn btn-outline-light btn-lg">Register Now</a></div>
         </section>
+    {% endif %} 
+
         <section class="clean-block clean-info dark">
             <div class="container">
                 <div class="block-heading">
@@ -82,9 +114,6 @@
             <p>© 2020 BookIt</p>
         </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="{% static 'assets/js/script.min.js' %}"></script>
 </body>
 

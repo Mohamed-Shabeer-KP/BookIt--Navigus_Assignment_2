@@ -26,7 +26,6 @@ DEBUG = True
  
 ALLOWED_HOSTS = ['bookit-navigus-assignment.herokuapp.com','*']
 
-AUTHENTICATION_BACKENDS = ('BookIt.custom_auth.EmailAuthBackend',)
 # Application definition
 
 INSTALLED_APPS = [
@@ -81,6 +80,7 @@ DATABASES = {
     }
 }
 
+SILENCED_SYSTEM_CHECKS = ['auth.E003', 'auth.W004']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

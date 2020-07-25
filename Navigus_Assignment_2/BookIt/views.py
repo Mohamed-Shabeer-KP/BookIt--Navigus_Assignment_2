@@ -30,13 +30,16 @@ def register(request):
             val_name = request.POST.get("name")
             val_password = request.POST.get("password")
             val_email = request.POST.get("email")
-            user = User.objects.create_user(val_name,val_email,val_password)
-            user.save()
-            messages.info(request, 'Hurray! You have been successfully Registered.')
+            try:
+                user = User.objects.create_user(val_name,val_email,val_password)
+                user.save()
+                messages.add_message(request, messages.INFO, 'Hurray! You have been successfully Registered.Login now !')
+                return render(request,'BookIt/login.html')
+            except:
+                messages.add_message(request, messages.INFO, 'OOPS! User with an email you have entered already exist !')
+                return render(request,'BookIt/registration.html')
+    else:
         return render(request,'BookIt/registration.html')
-    else :
-        return render(request,'BookIt/registration.html')
-
 
 def features(request):
     return render(request,'BookIt/features.html')
