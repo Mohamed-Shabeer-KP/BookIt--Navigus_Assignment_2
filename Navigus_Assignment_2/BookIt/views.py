@@ -33,7 +33,7 @@ def register(request):
             try:
                 user = User.objects.create_user(val_name,val_email,val_password)
                 user.save()
-                messages.add_message(request, messages.INFO, 'Hurray! You have been successfully Registered.Login now !')
+                messages.add_message(request, messages.INFO, 'Hurray! Successfully Registered. Login now !')
                 return render(request,'BookIt/login.html')
             except:
                 messages.add_message(request, messages.INFO, 'OOPS! User with an email you have entered already exist !')
