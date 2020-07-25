@@ -3,11 +3,10 @@ from BookIt.models import Slot
 import datetime as dt
 
 class SlotCreateSerializer(serializers.ModelSerializer):
-    url = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Slot
-        fields = ('url','id','name','user_id','date','start_time','end_time','status')
-        read_only_fields=['end_time','user_id','id','status']
+        fields = ('id','name','date','start_time','end_time','status')
+        read_only_fields=['end_time','status']
 
         
     def validate(self,value):
@@ -33,21 +32,21 @@ class SlotCreateSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         return obj.get_api_url(request=request)
 
-
-class SlotBookSerializer(serializers.ModelSerializer):
+class SlotListSerializer(serializers.ModelSerializer):
+    url = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Slot
-        fields = ('id','name','date','start_time','end_time','status','user_id','attendee')
-        read_only_fields=['id','name','date','start_time','end_time','user_id','attendee']
+        fields = ('id','url','name','host','date','start_time','end_time','status','attendee')
 
     def get_url(self, obj):
         request = self.context.get("request")
         return obj.get_api_url(request=request)
 
-class SlotListSerializer(serializers.ModelSerializer):
+class SlotBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slot
-        fields = ('url','id','name','user_id','date','start_time','end_time','status')
+        fields = ('id','name','date','start_time','end_time','status','host')
+        read_only_fields=['id','name','date','start_time','end_time','host']
 
     def get_url(self, obj):
         request = self.context.get("request")
