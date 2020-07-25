@@ -1,17 +1,16 @@
 from rest_framework import serializers
-from BookIt.models import slot
+from BookIt.models import Slot
 import datetime as dt
 
 class SlotCreateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = slot
-        fields = ('name','date','start_time','end_time')
-        read_only_fields=['end_time']
+        model = Slot
+        fields = ('name','user','date','start_time','end_time')
+        read_only_fields=['end_time','user']
     
     def validate(self,value):
         stime = value.get('start_time')
-        time = str(stime)[3:5] #+ str(stime)[6:]
-        print(time)
+        time = str(stime)[3:5] 
         if not int(time) == 0:
             raise serializers.ValidationError("Starting time should be Fixed Hour (For example, 01:00:00, 12:00:00, 13:00:00, etc)")
 
@@ -21,7 +20,15 @@ class SlotCreateSerializer(serializers.ModelSerializer):
         return value
 
     def validate_name(self,value):
-        obj = slot.objects.filter(name=value)
+        obj = Slot.objects.filter(name=value)
         if obj.exists():
             raise serializers.ValidationError("An event with the name you have entered is already present.please enter another name.")
         return value
+
+
+
+class SlotBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Slot
+        fields = ('name','date','start_time','end_time')
+        read_only_fields=['end_time']

@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('BookIt.urls')),
     path('api/', include('BookIt.api.urls')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

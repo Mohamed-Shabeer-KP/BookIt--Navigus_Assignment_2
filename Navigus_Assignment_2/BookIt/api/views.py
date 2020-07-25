@@ -1,8 +1,15 @@
 from rest_framework import generics
-from .serializers import SlotCreateSerializer
-from BookIt.models import slot
+from .serializers import SlotCreateSerializer,SlotBookSerializer
+from BookIt.models import Slot
 
 class SlotCreateSet(generics.ListCreateAPIView):
-    #lookup_field = 'pk'
-    queryset = slot.objects.all().order_by('username')
+    #lookup_field = 'host_name'
+    queryset = Slot.objects.all().order_by('user')
     serializer_class = SlotCreateSerializer
+
+
+
+class SlotBookSet(generics.ListAPIView):
+    lookup_field = 'host_name'
+    queryset = Slot.objects.all().order_by('user')
+    serializer_class = SlotBookSerializer
