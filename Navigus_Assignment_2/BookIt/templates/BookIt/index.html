@@ -20,6 +20,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+
+    <script type="text/javascript">
+    function customAlert() {
+        bootbox.alert({
+            size: "large",
+            title: "Help",
+            message: "<p><b>Create Slot</b> - API to create a new available slot.</p>" +
+                     "<p><b>View Slot</b> - API to view all the slot. Remember the <b>ID </b>of a slot. If you are planning to book a slot.</p>" +
+                     "<p><b>Book Slot</b> - API to book a slot.</p>" +
+                     "<p><b>Update Slot</b> - API to update status of the appoinment and also to remove a slot (only available to the creator of the slot).</p>",
+        })}
+    function customPromptBook() {
+        bootbox.prompt("<b>Slot ID</b> to Book ?", function(result){
+            if(result != null && result!=""){
+            window.location.href = "{% url 'bookSlot' %}" + result;}
+        })}
+    function customPromptRemove() {
+        bootbox.prompt("<b>Slot ID</b> of slot to remove ?", function(result){
+            if(result != null && result!=""){
+            window.location.href = "{% url 'removeSlot' %}" + result;}
+        })}
+    </script>
 </head>
 
 <body>
@@ -38,6 +60,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="#" data-page="home">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active active" data-page="features" href="#">Features</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'index' %}">Logout</a></li> 
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" onClick="customAlert();">Help</a></li> 
                     {% endif %}                   
                 </ul>
             </div>
@@ -47,20 +70,18 @@
 
     {% if messages %}
         {% for message in messages %}
-        <script>
-            bootbox.alert({
-                title: "Notify",
-                message: "Successfully Logged In",
-            })
-        </script>
-        <section id="home" class="clean-block clean-hero page" style="background-image:url(&quot;{% static 'assets/img/info_calendar.png' %}&quot;);color:rgba(9, 162, 255, 0.85);">
+        <section id="home" class="clean-block clean-hero page" style="background-image:url(&quot;{% static 'assets/img/bg_calendar.jpg' %}&quot;);color:rgba(9, 162, 255, 0.85);">
             <div class="text">
                 <h2>BookIt.</h2>
-                <h5>Scheduling made easy.</h5> <p>Hi {{ message }} you may now book an appoinment with you friends and colleagues also you may let them know when you are available.</p><a href="{% url 'register' %}" class="btn btn-outline-light btn-lg mr-1">Slot</a><a href="{% url 'register' %}" class="btn btn-outline-light btn-lg">Book Now</a></div>        
+                <h5>Scheduling made easy.</h5> <p>Hi {{ message }} you may now book an appoinment with you friends and colleagues also you may let them know when you are available.</p>
+                <a href="{% url 'createSlot' %}" class="btn btn-outline-light btn-lg mr-1">Create Slot</a>
+                <a href="{% url 'viewSlot' %}" class="btn btn-outline-light btn-lg mr-1">View Slots</a>
+                <a href="#" class="btn btn-outline-light btn-lg mr-1" onClick="customPromptBook();">Book Slot</a>
+                <a href="#" class="btn btn-outline-light btn-lg mr-1" onClick="customPromptRemove();">Update Slots</a></div>        
         </section>
         {% endfor %}
     {% else %}        
-        <section id="home" class="clean-block clean-hero page" style="background-image:url(&quot;{% static 'assets/img/info_calendar.png' %}&quot;);color:rgba(9, 162, 255, 0.85);">
+        <section id="home" class="clean-block clean-hero page" style="background-image:url(&quot;{% static 'assets/img/bg_calendar.jpg' %}&quot;);color:rgba(9, 162, 255, 0.85);">
             <div class="text">
                 <h2>BookIt.</h2>
                 <h5>Scheduling made easy.</h5> <p>we will help you to book and manage your appointments online.</p><a href="{% url 'register' %}" class="btn btn-outline-light btn-lg">Register Now</a></div>
@@ -90,7 +111,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-md-5 feature-box"><i class="icon-star icon"></i>
-                        <h4>Google Calander Integration</h4>
+                        <h4>Future Update : Google Calendar Integration</h4>
                         <p>We would like you to be synced with your calenders. which helps you to get reminded at the time of appoinments.</p>
                     </div>
                     <div class="col-md-5 feature-box"><i class="icon-pencil icon"></i>
