@@ -24,7 +24,7 @@ SECRET_KEY = '1l^-arymwnguz%_f$c$wg=xh$8%lkqt-9rf*ppiu*z^0+z-9t@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
  
-ALLOWED_HOSTS = ['bookit-navigus-assignment.herokuapp.com','*']
+ALLOWED_HOSTS = ['bookit-navigus-assignment2.herokuapp.com','*']
 
 # Application definition
 
