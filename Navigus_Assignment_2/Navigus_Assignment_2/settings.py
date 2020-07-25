@@ -80,8 +80,6 @@ DATABASES = {
     }
 }
 
-SILENCED_SYSTEM_CHECKS = ['auth.E003', 'auth.W004']
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 

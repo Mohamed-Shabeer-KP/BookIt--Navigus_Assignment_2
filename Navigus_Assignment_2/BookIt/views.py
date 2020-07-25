@@ -35,8 +35,11 @@ def register(request):
                 user.save()
                 messages.add_message(request, messages.INFO, 'Hurray! Successfully Registered. Login now !')
                 return render(request,'BookIt/login.html')
-            except:
-                messages.add_message(request, messages.INFO, 'OOPS! User with an email you have entered already exist !')
+            except Exception as ex:
+                if 'username' in str(ex):
+                    messages.add_message(request, messages.INFO, 'OOPS! User name you have entered already exist !')
+                else:
+                    messages.add_message(request, messages.INFO, 'OOPS! User with an email you have entered already exist !')
                 return render(request,'BookIt/registration.html')
     else:
         return render(request,'BookIt/registration.html')
