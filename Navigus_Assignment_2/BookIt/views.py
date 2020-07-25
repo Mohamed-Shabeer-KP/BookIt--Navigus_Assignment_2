@@ -4,11 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.utils import timezone
 from django.contrib import messages
-from rest_framework import viewsets
 from . import custom_auth
-from .serializers import SlotSerializer
-from .models import slot
-
 
 def index(request):
     return render(request,'BookIt/index.html')
@@ -50,7 +46,3 @@ def register(request):
 
 def features(request):
     return render(request,'BookIt/features.html')
-
-class SlotViewSet(viewsets.ModelViewSet):
-    queryset = slot.objects.all().order_by('host_username')
-    serializer_class = SlotSerializer

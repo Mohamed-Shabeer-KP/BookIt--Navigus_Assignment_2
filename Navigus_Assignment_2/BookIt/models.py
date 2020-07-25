@@ -11,11 +11,11 @@ class slot(models.Model):
     def __str__(self):
         return self.name
 
-    name = models.CharField("slot_name", max_length=20, on_delete=models.CASCADE)
-    host_username = models.CharField("slot_host_username", max_length=30)
+    name = models.CharField(max_length=20,help_text='event name')
+    username = models.CharField(max_length=30,help_text='host username')
     status_choice = models.TextChoices('status','Available Booked')
-    status = models.CharField("slot_status",blank=False,choices=status_choice.choices,max_length=10)
-    date = models.DateField("slot_date")
-    start_time = models.TimeField("slot_time_start",auto_now=False, auto_now_add=False)
-    end_time = models.TimeField("slot_time_end",auto_now=False, auto_now_add=False)
-    created_at = models.TimeField("slot_created_at",auto_now_add=True)
+    status = models.CharField(blank=False,choices=status_choice.choices,max_length=10,help_text='status of slot')
+    date = models.DateField(help_text='date for slot')
+    start_time = models.TimeField(auto_now=False, auto_now_add=False,help_text='slot start time')
+    end_time = models.TimeField(help_text='slot end time')
+    created_at = models.TimeField(auto_now_add=True,help_text='slot created time')
