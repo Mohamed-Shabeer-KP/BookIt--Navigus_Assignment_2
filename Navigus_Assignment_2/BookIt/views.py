@@ -45,13 +45,13 @@ def register(request):
         return render(request,'BookIt/registration.html')
 
 def createSlot(request):
-    return redirect('api-slot:slot-create')
+    return redirect('api-slot-web:slot-create')
 
 def viewSlot(request):
-    return redirect('api-slot:slot-select')
+    return redirect('api-slot-web:slot-select')
 
 def bookSlot(request):
-    return redirect('api-slot:slot-update')
+    return redirect('api-slot-web:slot-update')
 
 def removeSlot(request):
-    return redirect('api-slot:slot-remove')
+    return redirect('api-slot-web:slot-remove')
