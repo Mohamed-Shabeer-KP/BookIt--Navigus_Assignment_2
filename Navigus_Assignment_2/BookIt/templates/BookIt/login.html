@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 </head>
 
 <body>
@@ -29,15 +35,28 @@
         </div>
     </nav>
     <main class="page login-page">
+
+    {% if messages %}
+        {% for message in messages %}
+        <script>
+            bootbox.alert({
+                title: "Notify",
+                message: "{{ message }}",
+            })
+        </script>
+        {% endfor %}    
+    {% endif %} 
+
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
                     <h2 class="text-info">Log In</h2>
                     <p>Log in now to make your life easier.</p>
                 </div>
-                <form>
-                    <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email"></div>
-                    <div class="form-group"><label for="password">Password</label><input class="form-control" type="password" id="password"></div><button class="btn btn-primary btn-block" type="submit">Log In</button>
+                <form action={% url 'login' %} method="POST">
+                    {% csrf_token %}
+                    <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email" name="email"></div>
+                    <div class="form-group"><label for="password">Password</label><input class="form-control" type="password" id="password" name="password"></div><button class="btn btn-primary btn-block" type="submit">Log In</button>
                     <hr>
                     <p>Want to make your life easier . <b>Register now</b></p>
                     <a href="{% url 'register' %}" class="btn btn-primary btn-block">Register</a></form>
@@ -49,9 +68,6 @@
             <p>© 2018 Copyright Text</p>
         </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
     <script src="{% static 'assets/js/script.min.js' %}"></script>
 </body>
 
