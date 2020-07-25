@@ -6,14 +6,17 @@ class SlotCreateSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Slot
-        fields = ('url','id','name','user_id','date','start_time','end_time')
-        read_only_fields=['end_time','user_id','id',]
+        fields = ('url','id','name','user_id','date','start_time','end_time','status')
+        read_only_fields=['end_time','user_id','id','status']
 
+        
     def validate(self,value):
         stime = value.get('start_time')
         time = str(stime)[3:5] 
         if not int(time) == 0:
             raise serializers.ValidationError("Starting time should be Fixed Hour (For example, 01:00:00, 12:00:00, 13:00:00, etc)")
+        
+        value['status'] = 'Available'
 
         if value.get('end_time',None)==None:
             delta = dt.timedelta(hours=1)
@@ -34,8 +37,17 @@ class SlotCreateSerializer(serializers.ModelSerializer):
 class SlotBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slot
-        fields = ('name','date','start_time','end_time','status','user_id')
-        read_only_fields=['name','date','start_time','end_time','user_id']
+        fields = ('id','name','date','start_time','end_time','status','user_id','attendee')
+        read_only_fields=['id','name','date','start_time','end_time','user_id','attendee']
+
+    def get_url(self, obj):
+        request = self.context.get("request")
+        return obj.get_api_url(request=request)
+
+class SlotListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Slot
+        fields = ('url','id','name','user_id','date','start_time','end_time','status')
 
     def get_url(self, obj):
         request = self.context.get("request")

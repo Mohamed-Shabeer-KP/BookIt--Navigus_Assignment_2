@@ -26,7 +26,7 @@ class Slot(models.Model):
 
     @property
     def owner(self):
-        return self.user
+        return self.user_id
 
     def get_api_url(self, request=None):
         return api_reverse('api-slot:slot-view', kwargs={'pk': self.pk},request=request)
