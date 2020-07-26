@@ -15,7 +15,7 @@ BookIt is a Django application integrated with DjangoRest Framework for creating
 
 ```slot_id = The ID of the Slot```
 
-Postman API Collecion : [Link](https://documenter.getpostman.com/view/12165569/T1DqfGCo)
+### Postman API Collection : [Link](https://documenter.getpostman.com/view/12165569/T1DqfGCo)
 
 ## Sample User data 
 
