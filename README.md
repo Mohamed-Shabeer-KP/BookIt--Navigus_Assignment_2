@@ -23,7 +23,13 @@ For [login](https://bookit-navigus-assignment2.herokuapp.com/api-auth/login/?nex
   "Password": "sam123"
 }
 ```
-
+For [Django Admin](https://bookit-navigus-assignment2.herokuapp.com/admin/) page,
+```json
+{
+  "Username": "administrator",
+  "Password": "admin"
+}
+```
 
 
 ## Flow and Bonus points
