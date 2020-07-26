@@ -30,6 +30,15 @@ For [Django Admin](https://bookit-navigus-assignment2.herokuapp.com/admin/) page
   "Password": "admin"
 }
 ```
+## url pattern for API End-points
+
+1. Slot creation  - [https://bookit-navigus-assignment2.herokuapp.com/api/post/](https://bookit-navigus-assignment2.herokuapp.com/api/post/)
+1. View all slots - [https://bookit-navigus-assignment2.herokuapp.com/api/list/](https://bookit-navigus-assignment2.herokuapp.com/api/list/)
+1. Slot Booking   - https://bookit-navigus-assignment2.herokuapp.com/api^book/(?P<slot id>\d+)/$/ 
+1. Slot Remove   - https://bookit-navigus-assignment2.herokuapp.com/api^remove/(?P<slot id>\d+)/$/ 
+
+Postman API Collecion : [link](https://documenter.getpostman.com/view/12165569/T1DqfGCo)
+
 
 
 ## Flow and Bonus points
@@ -45,6 +54,8 @@ For [Django Admin](https://bookit-navigus-assignment2.herokuapp.com/admin/) page
         1. single user test
         1. single slot test
         1. single get list test
+        
+        
 ## Sample Images
 1. Landing page
 
