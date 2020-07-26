@@ -17,10 +17,10 @@ def login(request):
             user = custom_auth.authenticate(mail=val_email, password=val_password)
             if user is not None:
                 messages.info(request, user)
-                return render(request,'BookIt/index.html')
+                return redirect('index')
             else:
                 messages.info(request, 'Login credetials are invalid')
-                return render(request,'BookIt/login.html')
+                return redirect('login')
     else :
         return render(request,'BookIt/login.html')
 
