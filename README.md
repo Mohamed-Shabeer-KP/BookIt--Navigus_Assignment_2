@@ -85,6 +85,7 @@ For [Django Admin](https://bookit-navigus-assignment2.herokuapp.com/admin/) page
 
 ![unauth api](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/7.PNG?alt=media&token=fb7bae2c-f0aa-4e1d-b0e9-aeaa3318b150)
 <hr>
+
 #### Django admin slot model
 
 ![admin page slot model](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/8.PNG?alt=media&token=9ae7e719-ba30-4419-b37d-f383eed9bd85)
