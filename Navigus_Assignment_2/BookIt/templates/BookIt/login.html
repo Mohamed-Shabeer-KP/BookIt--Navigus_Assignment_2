@@ -56,7 +56,7 @@
                 <form action={% url 'login' %} method="POST">
                     {% csrf_token %}
                     <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email" name="email"></div>
-                    <div class="form-group"><label for="password">Password</label><input class="form-control" type="password" id="password" name="password"></div><button class="btn btn-primary btn-block" type="submit">Log In</button>
+                    <div class="form-group"><label for="password">Password</label><input class="form-control" type="password" id="password" name="password"></div><button class="btn btn-primary btn-block" type="submit" onClick="return validate_login()">Log In</button>
                     <hr>
                     <p>Want to make your life easier . <b>Register now</b></p>
                     <a href="{% url 'register' %}" class="btn btn-primary btn-block">Register</a></form>
@@ -69,6 +69,7 @@
         </div>
     </footer>
     <script src="{% static 'assets/js/script.min.js' %}"></script>
+    <script src="{% static 'assets/js/validation.min.js' %}"></script>
 </body>
 
 </html>
