@@ -45,8 +45,15 @@ class SlotListSerializer(serializers.ModelSerializer):
 class SlotBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slot
-        fields = ('id','name','date','start_time','end_time','status','host')
-        read_only_fields=['id','name','date','start_time','end_time','host']
+        fields = ('id','name','date','start_time','end_time','status','host','attendee')
+        read_only_fields=['id','name','date','start_time','end_time','host','attendee']
+    
+    def validate(self, value):
+        if value['status'] == 'Booked':
+            value['attendee'] = self.context['request'].user.username
+        else:
+            value['attendee'] = 'Empty'
+        return value
 
     def get_url(self, obj):
         request = self.context.get("request")

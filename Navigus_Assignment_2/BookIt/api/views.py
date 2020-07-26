@@ -31,15 +31,12 @@ class SlotListSet(generics.ListAPIView):
         return {"request":self.request}
 
 class SlotBookSet(generics.RetrieveUpdateAPIView):
-    serializer_class = SlotBookSerializer
+    serializer_class = SlotBookSerializer        
 
     def get_queryset(self):
         id = self.kwargs.get("pk")
         return Slot.objects.filter(id=id)
     
-    def perform_create(self, serializer):
-        serializer.save(attendee = self.request.user.username)
-
     def get_serializer_context(self, *args, **kwargs):
         return {"request":self.request}
 
