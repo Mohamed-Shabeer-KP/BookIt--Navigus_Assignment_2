@@ -45,3 +45,5 @@ For [Django Admin](https://bookit-navigus-assignment2.herokuapp.com/admin/) page
         1. single user test
         1. single slot test
         1. single get list test
+## Sample Images
+![index](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/1.PNG?alt=media&token=e8d07171-84e1-4b7d-8ef2-099e53b7c9df)
