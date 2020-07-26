@@ -60,32 +60,31 @@ For [Django Admin](https://bookit-navigus-assignment2.herokuapp.com/admin/) page
 #### Login Page
 
 ![index](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/1.PNG?alt=media&token=e8d07171-84e1-4b7d-8ef2-099e53b7c9df)
-<hr>
+---
 #### Logged In page
 
 ![logged in](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/2.PNG?alt=media&token=bf5136e6-3553-4265-9bfb-878f5f128a3d)
-<hr>
+---
 #### Create slot API
 
 ![create slot api](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/3.PNG?alt=media&token=654e1181-e5f7-42fd-9731-f823177fa81d)
-<hr>
+---
 #### Slot view API
 
 ![slot view api](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/4.PNG?alt=media&token=fa495ba8-ef63-4fac-970a-fd96f63dd191)
-<hr>
+---
 #### Book slot API
 
 ![book slot api](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/5.PNG?alt=media&token=ffe60a93-1171-4eb8-9e7b-b57cf08051c6)
-<hr>
+---
 #### Remove slot API
 
 ![book slot api](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/6.PNG?alt=media&token=ad1849b9-ef4c-4305-ad8f-0c43d2ba3248)
-<hr>
+---
 #### Unauthorized access to api
 
 ![unauth api](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/7.PNG?alt=media&token=fb7bae2c-f0aa-4e1d-b0e9-aeaa3318b150)
-<hr>
-
+---
 #### Django admin slot model
 
 ![admin page slot model](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/8.PNG?alt=media&token=9ae7e719-ba30-4419-b37d-f383eed9bd85)
