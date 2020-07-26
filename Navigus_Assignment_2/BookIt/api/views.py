@@ -1,7 +1,8 @@
 from rest_framework import generics, mixins
 from .serializers import SlotCreateSerializer,SlotBookSerializer,SlotListSerializer
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsAuthenticated
 from BookIt.models import Slot
+from rest_framework.permissions import IsAuthenticated
 
 
 class SlotCreateSet(mixins.CreateModelMixin, generics.ListAPIView):
@@ -40,12 +41,14 @@ class SlotBookSet(generics.RetrieveUpdateAPIView):
     def get_serializer_context(self, *args, **kwargs):
         return {"request":self.request}
 
+
 class SlotRemoveSet(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = (IsAuthenticated,)
     serializer_class = SlotBookSerializer
 
     def get_queryset(self):
-        return Slot.objects.all()
+        id = self.request.user.id
+        return Slot.objects.filter(user_id=id)
     
     def get_serializer_context(self, *args, **kwargs):
         return {"request":self.request}

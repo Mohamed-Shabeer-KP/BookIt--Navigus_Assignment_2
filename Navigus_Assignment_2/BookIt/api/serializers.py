@@ -17,6 +17,16 @@ class SlotCreateSerializer(serializers.ModelSerializer):
         
         value['status'] = 'Available'
 
+        obj = Slot.objects.filter(start_time=value)
+        if obj.exists():
+            raise serializers.ValidationError("This hourly time slot is already created.")
+        return value
+
+        if stime:
+            delta = dt.timedelta(hours=1)
+            value['end_time'] = (dt.datetime.combine(dt.date(1,1,1),stime) + delta).time()
+        return value
+
         if value.get('end_time',None)==None:
             delta = dt.timedelta(hours=1)
             value['end_time'] = (dt.datetime.combine(dt.date(1,1,1),stime) + delta).time()

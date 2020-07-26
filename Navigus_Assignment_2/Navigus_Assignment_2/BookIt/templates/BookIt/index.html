@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - BookIt</title>
+    
+    {% load static %}
+
+    <link rel="icon" type="image/png" sizes="200x200" href="{% static 'assets/img/calendar.png' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+
+    <script type="text/javascript">
+    function customAlert() {
+        bootbox.alert({
+            size: "large",
+            title: "Help",
+            message: "<p><b>Create Slot</b> - API to create a new available slot.</p>" +
+                     "<p><b>View Slot</b> - API to view all the slot. Remember the <b>ID </b>of a slot. If you are planning to book a slot.</p>" +
+                     "<p><b>Book Slot</b> - API to book a slot.</p>" +
+                     "<p><b>Update Slot</b> - API to update status of the appoinment and also to remove a slot (only available to the creator of the slot).</p>",
+        })}
+    function customPromptBook() {
+        bootbox.prompt("<b>Slot ID</b> to Book ?", function(result){
+            if(result != null && result!=""){
+            window.location.href = "{% url 'bookSlot' %}" + result;}
+        })}
+    function customPromptRemove() {
+        bootbox.prompt("<b>Slot ID</b> of slot to remove ?", function(result){
+            if(result != null && result!=""){
+            window.location.href = "{% url 'removeSlot' %}" + result;}
+        })}
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <div class="container"><a class="navbar-brand logo" href="{% url 'index' %}">BookIt</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    {% if not messages %}
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#" data-page="home">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active active" data-page="features" href="#">Features</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'login' %}">Login</a></li> 
+                    {% endif %}
+
+                    {% if messages %}
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#" data-page="home">Home</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active active" data-page="features" href="#">Features</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url 'index' %}">Logout</a></li> 
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" onClick="customAlert();">Help</a></li> 
+                    {% endif %}                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page landing-page">
+
+    {% if messages %}
+        {% for message in messages %}
+        <section id="home" class="clean-block clean-hero page" style="background-image:url(&quot;{% static 'assets/img/bg_calendar.jpg' %}&quot;);color:rgba(9, 162, 255, 0.85);">
+            <div class="text">
+                <h2>BookIt.</h2>
+                <h5>Scheduling made easy.</h5> <p>Hi {{ message }} you may now book an appoinment with you friends and colleagues also you may let them know when you are available.</p>
+                <a href="{% url 'createSlot' %}" class="btn btn-outline-light btn-lg mr-1">Create Slot</a>
+                <a href="{% url 'viewSlot' %}" class="btn btn-outline-light btn-lg mr-1">View Slots</a>
+                <a href="#" class="btn btn-outline-light btn-lg mr-1" onClick="customPromptBook();">Book Slot</a>
+                <a href="#" class="btn btn-outline-light btn-lg mr-1" onClick="customPromptRemove();">Update Slots</a></div>        
+        </section>
+        {% endfor %}
+    {% else %}        
+        <section id="home" class="clean-block clean-hero page" style="background-image:url(&quot;{% static 'assets/img/bg_calendar.jpg' %}&quot;);color:rgba(9, 162, 255, 0.85);">
+            <div class="text">
+                <h2>BookIt.</h2>
+                <h5>Scheduling made easy.</h5> <p>we will help you to book and manage your appointments online.</p><a href="{% url 'register' %}" class="btn btn-outline-light btn-lg">Register Now</a></div>
+        </section>
+    {% endif %} 
+
+        <section class="clean-block clean-info dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Our Aim</h2>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-md-6"><img class="img-thumbnail" src="{% static 'assets/img/info_calendar.png' %}"></div>
+                    <div class="col-md-6">
+                        <h3>Everything at one place</h3>
+                        <div class="getting-started-info">
+                            <p>Our soul purpose is to help you organize your appointments , meetings and events online in a simple and efficient manner.let others know the time you are available and they can book the slots.</p>
+                        </div>
+                </div>
+            </div>
+        </section>
+        <section id="features" class="clean-block features page">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Features</h2>
+                    <p>We focus on making your life easier.</p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-5 feature-box"><i class="icon-star icon"></i>
+                        <h4>Future Update : Google Calendar Integration</h4>
+                        <p>We would like you to be synced with your calenders. which helps you to get reminded at the time of appoinments.</p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-pencil icon"></i>
+                        <h4>Timed Slots</h4>
+                        <p>You can set fixed hourly slots thus makes the appointments much more easier.</p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-screen-smartphone icon"></i>
+                        <h4>Responsive</h4>
+                        <p>We want you to have a wonderful experience while using our service.</p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-refresh icon"></i>
+                        <h4>All Browser Compatibility</h4>
+                        <p>We want you to access our service from anytime any where and from any device.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer dark">
+        <div class="footer-copyright">
+            <p>© 2020 BookIt</p>
+        </div>
+    </footer>
+    <script src="{% static 'assets/js/script.min.js' %}"></script>
+</body>
+
+</html>
