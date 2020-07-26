@@ -4,7 +4,7 @@ BookIt is a Django application integrated with DjangoRest Framework for creating
 
 ## Deployed in Heroku
 
-[BookIt Heroku Application](https://bookit-navigus-assignment2.herokuapp.com/).
+[BookIt Heroku Application](https://bookit-navigus-assignment2.herokuapp.com/)
 
 ## url pattern for API End-points
 
@@ -13,7 +13,7 @@ BookIt is a Django application integrated with DjangoRest Framework for creating
 1. Slot Booking   - https://bookit-navigus-assignment2.herokuapp.com/api^book/(?P<slot id>\d+)/$/ 
 1. Slot Remove   - https://bookit-navigus-assignment2.herokuapp.com/api^remove/(?P<slot id>\d+)/$/ 
 
-Postman API Collecion : [link](https://documenter.getpostman.com/view/12165569/T1DqfGCo)
+Postman API Collecion : [Link](https://documenter.getpostman.com/view/12165569/T1DqfGCo)
 
 ## Sample User data 
 
