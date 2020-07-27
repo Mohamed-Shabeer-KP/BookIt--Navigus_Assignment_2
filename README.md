@@ -48,7 +48,7 @@ For [Django Admin](https://bookit-navigus-assignment2.herokuapp.com/admin/) page
    1. Create slot  
    1. Book slot 
    1. Update slot  
-   1. Remove slot (only owner of a slot can remove the slot).
+   1. Remove slot
 1. Bonus Points
    1. Unit cases added for API 
         1. single user test
