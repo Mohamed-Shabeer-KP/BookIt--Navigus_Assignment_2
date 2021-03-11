@@ -1,4 +1,4 @@
-# BookIt -- Navigus-assignment-2
+# BookIt
 
 BookIt is a Django application integrated with DjangoRest Framework for creating and booking slots for appointments.
 
