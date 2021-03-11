@@ -59,7 +59,7 @@ For [Django Admin](https://bookit-navigus-assignment2.herokuapp.com/admin/) page
 ## Sample Images
 #### Login Page
 
-![index](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/1.PNG?alt=media&token=e8d07171-84e1-4b7d-8ef2-099e53b7c9df)
+![index](https://firebasestorage.googleapis.com/v0/b/c-dwl-95da6.appspot.com/o/1.png?alt=media&token=236f5c8b-7906-424a-8f41-fe93f8235dec)
 ---
 #### Logged In page
 
